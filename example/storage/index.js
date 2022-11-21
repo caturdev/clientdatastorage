@@ -1,0 +1,4 @@
+(async () => {
+  await CDatabase.init();
+})();
+
