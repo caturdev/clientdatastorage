@@ -44,7 +44,9 @@ const updateData = async (id) => {
   document.getElementById('update-data').onclick = function (e) {
     e.preventDefault();
 
-    CDatabase.clear('User');
+    document.getElementById('submit-data').style.display = 'block';
+    document.getElementById('clear-data').style.display = 'block';
+    document.getElementById('update-data').style.display = 'none';
 
     updateTable();
   }
