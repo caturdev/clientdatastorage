@@ -5,7 +5,7 @@
  * sehingga perlu dipastikan bahwa browser support untuk IndexedDB versi stabil
  * -
  * bagian pertama adalah untuk memeriksa apakah browser mendukung indexedDB atau tidak
- * pada bagian function CDB_init disediakan callback function untuk menangani
+ * pada bagian function init disediakan callback function untuk menangani
  * apabila browser tidak mendukung IndexedDB
  * 
  * 
@@ -50,84 +50,6 @@ const CLIENT_DATA_STORAGE_SYSTEM = {
     return `TID${id}#${str}`;
   },
 
-  CDB_init: (onError = null) => new Promise((resolve) => {
-
-    // validation: memeriksa apakah browser mendukung IndexedDB atau tidak
-    if (onError && typeof onError === 'function') {
-      if (!window.indexedDB) {
-        onError('Browser tidak support IndexedDB versi stabil');
-        resolve('error');
-      }
-    }
-
-    // main init indexedDB
-    const request = window.indexedDB.open(CLIENT_DATA_STORAGE_SYSTEM.collection);
-
-    request.onsuccess = function (event) {
-      CLIENT_DATA_STORAGE_DATABASE = request.result;
-      resolve('success');
-    };
-
-    request.onerror = function (event) {
-      console.error("Error Initializing Client Database", event);
-    };
-
-    request.onupgradeneeded = function (event) {
-
-      const CDB_result = event.target.result;
-
-      // Define Default Collection
-      const objectStoreSystem = CDB_result.createObjectStore(CLIENT_DATA_STORAGE_SYSTEM.systemKey, { keyPath: 'id', autoIncrement: false });
-      const objectStoreStorage = CDB_result.createObjectStore(CLIENT_DATA_STORAGE_SYSTEM.storageKey, { keyPath: 'id', autoIncrement: false });
-
-      // Add Current Version of Database
-      objectStoreSystem.add({ id: 'version', value: 1 });
-
-    }
-
-  }),
-
-  CDBUpgradeStore: (collections = []) => new Promise(async (resolve) => {
-
-    await CLIENT_DATA_STORAGE_SYSTEM.CDB_init();
-
-    const versionSystem = await CDatabase.get(CLIENT_DATA_STORAGE_SYSTEM.systemKey, 'version');
-    const currentVersion = versionSystem.value;
-    const newVersion = currentVersion + 1;
-
-    CLIENT_DATA_STORAGE_DATABASE.close()
-
-    const request = window.indexedDB.open("ClientDB", newVersion);
-
-    request.onsuccess = function (event) {
-      CLIENT_DATA_STORAGE_DATABASE = request.result;
-      // Update system version on database
-      CDatabase.put(CLIENT_DATA_STORAGE_SYSTEM.systemKey, { id: 'version', value: newVersion });
-      resolve('success');
-    };
-
-    request.onerror = function (event) {
-      console.error("Upgrade Error", event);
-    };
-
-    request.onupgradeneeded = function (event) {
-
-      const CDB_result = event.target.result;
-
-      // Initializing Custom Collection
-      for (const collectionData of collections) {
-        CDB_result
-          .createObjectStore(
-            collectionData.collection, {
-            keyPath: collectionData.key,
-            autoIncrement: collectionData.autoIncrement,
-          });
-      }
-
-    }
-
-  }),
-
   CDBFunctionRunner: (callback) => {
 
     let trials = 0;
@@ -156,15 +78,85 @@ const CLIENT_DATA_STORAGE_SYSTEM = {
 
 const CDatabase = {
 
-  init: async (callback) => {
-    return await CLIENT_DATA_STORAGE_SYSTEM.CDB_init(callback);
-  },
+  init: (onError = null) => new Promise((resolve) => {
 
-  upgrade: async (collections, callback) => {
-    await CLIENT_DATA_STORAGE_SYSTEM.CDBUpgradeStore(collections);
-    if (callback && typeof callback === 'function') callback()
-    return;
-  },
+    // validation: memeriksa apakah browser mendukung IndexedDB atau tidak
+    if (onError && typeof onError === 'function') {
+      if (!window.indexedDB) {
+        onError('Browser tidak support IndexedDB versi stabil');
+        resolve('error');
+      }
+    }
+
+    // main init indexedDB
+    const request = window.indexedDB.open(CLIENT_DATA_STORAGE_SYSTEM.collection);
+
+    request.onsuccess = function (event) {
+      CLIENT_DATA_STORAGE_DATABASE = request.result;
+      resolve('success');
+    };
+
+    request.onerror = function (event) {
+      console.error("Error Initializing Client Database", event);
+      resolve('error');
+    };
+
+    request.onupgradeneeded = function (event) {
+
+      const CDB_result = event.target.result;
+
+      // Define Default Collection
+      const objectStoreSystem = CDB_result.createObjectStore(CLIENT_DATA_STORAGE_SYSTEM.systemKey, { keyPath: 'id', autoIncrement: false });
+      const objectStoreStorage = CDB_result.createObjectStore(CLIENT_DATA_STORAGE_SYSTEM.storageKey, { keyPath: 'id', autoIncrement: false });
+
+      // Add Current Version of Database
+      objectStoreSystem.add({ id: 'version', value: 1 });
+
+    }
+
+  }),
+
+  upgrade: (collections = [], callback) => new Promise(async (resolve) => {
+
+    await CDatabase.init();
+
+    const versionSystem = await CDatabase.get(CLIENT_DATA_STORAGE_SYSTEM.systemKey, 'version');
+    const currentVersion = versionSystem.value;
+    const newVersion = currentVersion + 1;
+
+    CLIENT_DATA_STORAGE_DATABASE.close()
+
+    const request = window.indexedDB.open("ClientDB", newVersion);
+
+    request.onsuccess = function (event) {
+      CLIENT_DATA_STORAGE_DATABASE = request.result;
+      // Update system version on database
+      CDatabase.put(CLIENT_DATA_STORAGE_SYSTEM.systemKey, { id: 'version', value: newVersion });
+      if (callback && typeof callback === 'function') callback()
+      resolve('success');
+    };
+
+    request.onerror = function (event) {
+      console.error("Upgrade Error", event);
+    };
+
+    request.onupgradeneeded = function (event) {
+
+      const CDB_result = event.target.result;
+
+      // Initializing Custom Collection
+      for (const collectionData of collections) {
+        CDB_result
+          .createObjectStore(
+            collectionData.collection, {
+            keyPath: collectionData.key,
+            autoIncrement: collectionData.autoIncrement,
+          });
+      }
+
+    }
+
+  }),
 
   add: (collection, data, callback) => {
     CLIENT_DATA_STORAGE_SYSTEM.CDBFunctionRunner(() => {
@@ -400,3 +392,9 @@ const CStorage = {
   },
 
 };
+
+(async () => {
+
+  await CDatabase.init();
+
+})();
