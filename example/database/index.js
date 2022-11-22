@@ -2,19 +2,58 @@ const collections = [
   { collection: 'User', key: 'id', autoIncrement: true },
 ];
 
-document.getElementById('form').onsubmit = function (e) {
+document.getElementById('submit-data').onclick = function (e) {
   e.preventDefault();
 
+  const formElement = document.getElementById('form');
+
   const data = {
-    name: e.target.elements.name.value,
-    email: e.target.elements.email.value,
-    password: e.target.elements.password.value,
+    name: formElement.elements.name.value,
+    email: formElement.elements.email.value,
+    password: formElement.elements.password.value,
   }
 
   CDatabase.add('User', data);
 
   updateTable();
 
+}
+
+document.getElementById('clear-data').onclick = function (e) {
+  e.preventDefault();
+
+  CDatabase.clear('User');
+
+  updateTable();
+
+}
+
+const updateData = async (id) => {
+
+  document.getElementById('submit-data').style.display = 'none';
+  document.getElementById('clear-data').style.display = 'none';
+  document.getElementById('update-data').style.display = 'block';
+
+  const userData = await CDatabase.get('User', id);
+
+  const formElement = document.getElementById('form');
+  formElement.elements.name.value = userData.name;
+  formElement.elements.email.value = userData.email;
+  formElement.elements.password.value = userData.password;
+
+  document.getElementById('update-data').onclick = function (e) {
+    e.preventDefault();
+
+    CDatabase.clear('User');
+
+    updateTable();
+  }
+
+}
+
+const deleteData = (id) => {
+  CDatabase.delete('User', id);
+  updateTable();
 }
 
 const updateTable = async function () {
@@ -27,10 +66,14 @@ const updateTable = async function () {
   for (const userData of data) {
     html += `
       <tr>
-        <td>${++index}</td>
+        <td style="text-align: center;">${++index}</td>
         <td>${userData.name}</td>
         <td>${userData.email}</td>
         <td>${userData.password}</td>
+        <td style="display: flex;">
+          <button type="button" class="form-btn-update" onClick="updateData(${userData.id})"> Update </button>
+          <button type="button" class="form-btn-clear" onClick="deleteData(${userData.id})"> Delete </button>
+        </td>
       </tr>
     `;
   };

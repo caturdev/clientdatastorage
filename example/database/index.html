@@ -32,7 +32,9 @@
             </label>
           </div>
           <div class="form-field-button">
-            <button type="submit" class="form-btn-submit"> Submit </button>
+            <button id="submit-data" type="button" class="form-btn-submit"> Submit </button>
+            <button id="clear-data" type="button" class="form-btn-clear"> Clear Data </button>
+            <button id="update-data" type="button" class="form-btn-submit" style="display: none;"> Update </button>
           </div>
         </form>
       </div>
@@ -40,10 +42,11 @@
         <table border="1px">
           <thead>
             <tr>
-              <td>No</td>
+              <td style="text-align: center;">No</td>
               <td>Name</td>
               <td>Email</td>
               <td>Password</td>
+              <td></td>
             </tr>
           </thead>
           <tbody id="body-data">
