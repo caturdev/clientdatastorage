@@ -1,3 +1,15 @@
+body {
+  font-family: 'Courier New', monospace;
+}
+
+button {
+  font-family: 'Courier New', monospace;
+}
+
+button:active {
+  background-color: chartreuse;
+}
+
 main {
   display: flex;
   flex-direction: column;
@@ -25,7 +37,7 @@ input {
   padding: 10px;
   border: 1px solid gainsboro;
   border-radius: 5px;
-
+  font-family: 'Courier New', monospace;
 }
 
 .form-btn-submit {
@@ -62,6 +74,7 @@ table {
   border: 1px solid #E5D9B6;
   border-radius: 5px;
   margin-bottom: 50px;
+  font-size: 12px;
 }
 
 table td {

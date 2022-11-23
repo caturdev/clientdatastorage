@@ -15,6 +15,10 @@ document.getElementById('submit-data').onclick = function (e) {
 
   CDatabase.add('User', data);
 
+  // reset form
+  resetForm();
+
+  // update user table data
   updateTable();
 
 }
@@ -30,6 +34,7 @@ document.getElementById('clear-data').onclick = function (e) {
 
 const updateData = async (id) => {
 
+  // change action button
   document.getElementById('submit-data').style.display = 'none';
   document.getElementById('clear-data').style.display = 'none';
   document.getElementById('update-data').style.display = 'block';
@@ -41,9 +46,25 @@ const updateData = async (id) => {
   formElement.elements.email.value = userData.email;
   formElement.elements.password.value = userData.password;
 
-  document.getElementById('update-data').onclick = function (e) {
+  document.getElementById('update-data').onclick = async function (e) {
     e.preventDefault();
 
+    const userCollection = await CDatabase.get('User');
+
+    const data = {
+      ...userCollection,
+      id: userData.id,
+      name: formElement.elements.name.value,
+      email: formElement.elements.email.value,
+      password: formElement.elements.password.value,
+    }
+
+    CDatabase.put('User', data);
+
+    // reset form
+    resetForm();
+
+    // change action button
     document.getElementById('submit-data').style.display = 'block';
     document.getElementById('clear-data').style.display = 'block';
     document.getElementById('update-data').style.display = 'none';
@@ -80,6 +101,13 @@ const updateTable = async function () {
     `;
   };
   document.getElementById('body-data').innerHTML = html;
+}
+
+const resetForm = () => {
+  const formElement = document.getElementById('form');
+  formElement.elements.name.value = '';
+  formElement.elements.email.value = '';
+  formElement.elements.password.value = '';
 }
 
 console.log('loaded on ' + Date());
