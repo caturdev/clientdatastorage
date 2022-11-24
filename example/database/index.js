@@ -1,6 +1,13 @@
-const collections = [
-  { collection: 'User', key: 'id', autoIncrement: true },
-];
+(async () => {
+
+  const collections = [
+    { collection: 'User', key: 'id', autoIncrement: true },
+  ];
+
+  const userCollection = await CDatabase.get('User');
+  if (!userCollection) CDatabase.upgrade(collections);
+
+})();
 
 document.getElementById('submit-data').onclick = function (e) {
   e.preventDefault();
@@ -82,6 +89,8 @@ const deleteData = (id) => {
 const updateTable = async function () {
 
   const data = await CDatabase.get('User');
+
+  if (!data) return;
 
   document.getElementById('body-data').innerHTML = '';
   let index = 0;

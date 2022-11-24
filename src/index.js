@@ -76,6 +76,10 @@ const CLIENT_DATA_STORAGE_SYSTEM = {
 
 }
 
+const CLIENT_DATA_STORAGE_CONFIG = {
+  where: [],
+}
+
 const CDatabase = {
 
   init: (onError = null) => new Promise((resolve) => {
@@ -158,6 +162,20 @@ const CDatabase = {
 
   }),
 
+  where: (condition, notation, value) => {
+
+    if (typeof condition === 'object') {
+      CLIENT_DATA_STORAGE_CONFIG.where = [...CLIENT_DATA_STORAGE_CONFIG.where, condition];
+      return;
+    };
+
+    if (typeof condition === 'string') {
+      CLIENT_DATA_STORAGE_CONFIG.where = [...CLIENT_DATA_STORAGE_CONFIG.where, [condition, notation, value]];
+      return;
+    }
+
+  },
+
   add: (collection, data, callback) => {
     CLIENT_DATA_STORAGE_SYSTEM.CDBFunctionRunner(() => {
 
@@ -187,28 +205,115 @@ const CDatabase = {
     });
   },
 
-  get: (collection, key, callback) => new Promise((resolve) => {
+  /**
+   * C Database GET
+   * =
+   * function to get data from database.
+   * function will get all data if there is no key passed in the second parameter
+   * and will get specified data id there is a key passed in the second parameter
+   * 
+   * @param {String} collection the database object name the want to search
+   * @param {*} conditionalParameter string as key, or function as callback
+   * @param {Function} callback a function what will be run after function run well
+   * @returns object data or null (of error of no data available)
+   */
+
+  get: (collection, conditionalParameter, callback) => new Promise((resolve) => {
     CLIENT_DATA_STORAGE_SYSTEM.CDBFunctionRunner(() => {
 
-      // get all data from collection
-      let req = null;
+      try {
 
-      if (key) {
-        req = CLIENT_DATA_STORAGE_DATABASE.transaction(collection).objectStore(collection).get(key);
-      } else {
-        req = CLIENT_DATA_STORAGE_DATABASE.transaction(collection).objectStore(collection).getAll();
-      }
+        // ----------------------------
+        // Get all data from collection
+        // ----------------------------
 
-      if (req) {
-        // on success
+        let req = null;
+
+        if (conditionalParameter && typeof conditionalParameter === 'string') {
+          // condition if the second argument is a string as key
+          req = CLIENT_DATA_STORAGE_DATABASE.transaction(collection).objectStore(collection).get(conditionalParameter);
+        } else {
+          // condition if the second argument is a function
+          req = CLIENT_DATA_STORAGE_DATABASE.transaction(collection).objectStore(collection).getAll();
+        }
+
+        if (!req) throw 'No object generated';
+
+        // ------------------
+        // On Success Process
+        // ------------------
+
         req.onsuccess = () => {
-          resolve(req.result);
-          if (callback && typeof callback === 'function') callback();
+
+          // return the data result
+
+          let result = req.result;
+
+          if (CLIENT_DATA_STORAGE_CONFIG.where && typeof CLIENT_DATA_STORAGE_CONFIG.where === 'object' && CLIENT_DATA_STORAGE_CONFIG.where.length) {
+
+            let dataFiltered = [];
+            for (const resultItem of req.result) {
+              for (const whereArrData of CLIENT_DATA_STORAGE_CONFIG.where) {
+                switch (whereArrData[1]) {
+                  case '==':
+                    if (resultItem[whereArrData[0]] == whereArrData[2]) dataFiltered = [...dataFiltered, resultItem];
+                    break;
+
+                  case '<':
+                    if (resultItem[whereArrData[0]] < whereArrData[2]) dataFiltered = [...dataFiltered, resultItem];
+                    break;
+
+                  case '<=':
+                    if (resultItem[whereArrData[0]] <= whereArrData[2]) dataFiltered = [...dataFiltered, resultItem];
+                    break;
+
+                  case '>':
+                    if (resultItem[whereArrData[0]] > whereArrData[2]) dataFiltered = [...dataFiltered, resultItem];
+                    break;
+
+                  case '>=':
+                    if (resultItem[whereArrData[0]] >= whereArrData[2]) dataFiltered = [...dataFiltered, resultItem];
+                    break;
+
+                  default:
+                    break;
+                }
+              }
+            }
+
+            result = dataFiltered;
+
+          }
+
+          // Consider run the callback function by the condition
+          if (conditionalParameter && typeof conditionalParameter === 'string' && typeof callback === 'function') {
+            // condition if the second argument is a string as key
+            callback(result);
+          } else if (conditionalParameter && typeof conditionalParameter === 'function') {
+            // condition if the second argument is a function
+            conditionalParameter(result);
+          }
+
+          // Clear filter object
+          CLIENT_DATA_STORAGE_CONFIG.where = [];
+
+          // Resolve the promise callback
+          resolve(result);
+
         };
-        // on error
-        req.onerror = (err) => console.error(`DCB Error : Get data to: ${collection}`);
-      } else {
-        resolve('SDB error connenction');
+
+        // ----------------
+        // On Error Process
+        // ----------------
+
+        req.onerror = (err) => {
+          resolve(null);
+        };
+
+      } catch (error) {
+        // if there are an error like bellow
+        // Failed to execute 'transaction' on 'IDBDatabase': One of the specified object stores was not found.
+        resolve(null);
       }
 
     });
