@@ -23,11 +23,11 @@ Client Database is used to store data like a database in general, but it is done
 ```
 
 ``` javascript
-CDatabase.add('UserData', { name: 'Indra Jati', email: null });
+CDatabase.add('User', { name: 'Indra Jati', email: null });
 ```
 
 ``` javascript
-CDatabase.put('UserData', { name: 'Ferry Arianto', email: null });
+CDatabase.put('User', { name: 'Ferry Ferdian', email: null });
 ```
 
 ``` javascript
