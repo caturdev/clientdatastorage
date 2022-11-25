@@ -82,6 +82,15 @@ const CLIENT_DATA_STORAGE_CONFIG = {
 
 const CDatabase = {
 
+  /**
+   * Init Function
+   * =
+   * this function is for initialization the system
+   * 
+   * @param {Function} onError callback function
+   * @returns 
+   */
+
   init: (onError = null) => new Promise((resolve) => {
 
     // validation: memeriksa apakah browser mendukung IndexedDB atau tidak
@@ -120,6 +129,18 @@ const CDatabase = {
 
   }),
 
+  /**
+   * Upgrade System
+   * =
+   * this function for upgrade the database
+   * when user want to create a collection, user need to upgrade the database with new collection list
+   * -
+   * warning: if define a collection, and the collection name is defined, it will be error
+   * 
+   * @param {Array} collections of list that will be create
+   * @param {Function} callback funciton that will run after the function done
+   * @returns 
+   */
   upgrade: (collections = [], callback) => new Promise(async (resolve) => {
 
     await CDatabase.init();
@@ -162,6 +183,16 @@ const CDatabase = {
 
   }),
 
+  /**
+   * Where Functions
+   * =
+   * used for make a simple query
+   * 
+   * @param {String} searched fields
+   * @param {String} comparative notation
+   * @param {String} the value condition
+   * @returns 
+   */
   where: (condition, notation, value) => {
 
     if (typeof condition === 'object') {
