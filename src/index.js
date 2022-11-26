@@ -39,6 +39,8 @@ const CLIENT_DATA_STORAGE_SYSTEM = {
 
   collection: 'ClientDB',
 
+  tryConnection: 1,
+
   timeoutConnection: 5,
 
   systemKey: '__system__',
@@ -50,27 +52,20 @@ const CLIENT_DATA_STORAGE_SYSTEM = {
     return `TID${id}#${str}`;
   },
 
-  CDBFunctionRunner: (callback) => {
+  CDBFunctionRunner: (f) => {
 
-    let trials = 0;
+    if (CLIENT_DATA_STORAGE_DATABASE) {
+      f();
+    }
 
-    const intervalID = setInterval(() => {
-
-      ++trials;
-
-      if (CLIENT_DATA_STORAGE_DATABASE) {
-        callback();
-        return clearInterval(intervalID);
+    else {
+      if (CLIENT_DATA_STORAGE_SYSTEM.tryConnection <= CLIENT_DATA_STORAGE_SYSTEM.timeoutConnection) {
+        CLIENT_DATA_STORAGE_SYSTEM.tryConnection = CLIENT_DATA_STORAGE_SYSTEM.tryConnection + 1;
+        setTimeout(() => { CLIENT_DATA_STORAGE_SYSTEM.CDBFunctionRunner(f) }, 250);
+      } else {
+        console.error('connection timeot');
       }
-
-      if (trials > CLIENT_DATA_STORAGE_SYSTEM.timeoutConnection) {
-        console.error('timeout connection dengan Client Database');
-        return clearInterval(intervalID);
-      }
-
-      console.info('mencoba menghubungkan dengan Client Database');
-
-    }, 10);
+    }
 
   },
 
@@ -327,7 +322,7 @@ const CDatabase = {
       // on success
       rq.onsuccess = () => resolve(rq.result);
       // on error
-      rq.onerror = (err) => console.error(`Error to get all data: ${err}`)
+      rq.onerror = (err) => resolve(err);
 
     });
   }),
@@ -464,31 +459,44 @@ const CStorage = {
   },
 
   clearGlobal: async (callback) => new Promise(async (resolve) => {
+    try {
 
-    const keys = await CDatabase.getKeys(CLIENT_DATA_STORAGE_SYSTEM.storageKey);
+      const keys = await CDatabase.getKeys(CLIENT_DATA_STORAGE_SYSTEM.storageKey);
 
-    for (const key of keys) {
-      const prefixes = key.slice(0, 5);
-      console.log(prefixes !== 'TID0.', key);
-      // data akan dihapus apabila diawali dengan 'TID0.'
-      if (prefixes !== 'TID0.') CDatabase.delete(CLIENT_DATA_STORAGE_SYSTEM.storageKey, key);
+      for (const key of keys) {
+        const prefixes = key.slice(0, 5);
+        // delete all data whitch the prefix key is not 'TID0.'
+        if (prefixes !== 'TID0.') CDatabase.delete(CLIENT_DATA_STORAGE_SYSTEM.storageKey, key);
+      }
+
+      if (callback && typeof callback === 'function') callback();
+
+      resolve();
+
+    } catch (error) {
+      console.error('storage clear global storage data error');
     }
-
-    if (callback && typeof callback === 'function') callback()
-
   }),
 
   clearLocal: async (callback) => new Promise(async (resolve) => {
 
-    const keys = await CDatabase.getKeys(CLIENT_DATA_STORAGE_SYSTEM.storageKey);
+    try {
 
-    for (const key of keys) {
-      const prefixes = key.slice(0, 5);
-      // data akan dihapus apabila diawali dengan 'TID0.'
-      if (prefixes === 'TID0.') CDatabase.delete(CLIENT_DATA_STORAGE_SYSTEM.storageKey, key);
+      const keys = await CDatabase.getKeys(CLIENT_DATA_STORAGE_SYSTEM.storageKey);
+
+      for (const key of keys) {
+        const prefixes = key.slice(0, 5);
+        // delete all data whitch the prefix key is 'TID0.'
+        if (prefixes === 'TID0.') CDatabase.delete(CLIENT_DATA_STORAGE_SYSTEM.storageKey, key);
+      }
+
+      if (callback && typeof callback === 'function') callback();
+
+      resolve();
+
+    } catch (error) {
+      console.error('storage clear local storage data error');
     }
-
-    if (callback && typeof callback === 'function') callback()
 
   }),
 

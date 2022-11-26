@@ -158,3 +158,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   await initData();
   await updateScoreBoard();
 });
+
+window.onerror = () => {
+  console.log('error');
+}
