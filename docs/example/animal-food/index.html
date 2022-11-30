@@ -12,7 +12,16 @@
 <body style="font-family: 'Fira Code', monospace;background: var(--bs-gray-dark);color: var(--bs-light);">
     <header style="min-height: 56px;margin-bottom: 60px;">
         <nav class="navbar navbar-dark navbar-expand-md fixed-top bg-dark">
-            <div class="container"><a class="navbar-brand" href="../../index.html"><strong><span style="color: rgb(249, 232, 20);">C</span>Storage</strong></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="container">
+                <a class="navbar-brand" href="../../index.html">
+                    <strong>
+                        <span style="color: rgb(249, 232, 20);">C</span>Storage
+                    </strong>
+                </a>
+                <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1">
+                    <span class="visually-hidden">Toggle navigation</span>
+                    <span class="navbar-toggler-icon"></span>
+                </button>
                 <div class="collapse navbar-collapse" id="navcol-1">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item"><a class="nav-link" href="../../index.html">Home</a></li>
@@ -30,7 +39,8 @@
                     <div class="card-body text-center">
                         <div style="margin-bottom: 40px;margin-top: 30px;">
                             <h4>Animal Food</h4>
-                            <h6 class="text-muted mb-2">Choose The Match Animal With It Food Type</h6><button class="btn btn-outline-info" type="button">New Game</button>
+                            <h6 class="text-muted mb-2">Choose The Match Animal With It Food Type</h6>
+                            <button class="btn btn-outline-info" type="button" onclick="newGame()">New Game</button>
                         </div>
                         <div class="row gy-3 justify-content-center align-items-center" id="animal-conatiner">
                             <div class="col-lg-3"><button class="btn btn-primary active" type="button" style="width: 100%;">🐹 rat<br></button></div>
@@ -50,7 +60,8 @@
                         </div>
                         <div style="margin-top: 40px;margin-bottom: 30px;">
                             <p>Result</p>
-                            <p class="text-success">CORRECT!!</p><button class="btn btn-info" type="button">Submit</button>
+                            <p id="result-check">-</p>
+                            <button class="btn btn-info" type="button" onclick="resultCheck()">Check</button>
                         </div>
                         <div style="margin-top: 40px;margin-bottom: 30px;">
                             <div class="table-responsive">
@@ -64,11 +75,11 @@
                                     <tbody>
                                         <tr>
                                             <td class="text-start">Correct Answer</td>
-                                            <td>1</td>
+                                            <td id="correct-answer">-</td>
                                         </tr>
                                         <tr>
                                             <td class="text-start">In-Correct Answer<br></td>
-                                            <td>78</td>
+                                            <td id="wrong-answer">-</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -82,14 +93,17 @@
     <footer style="margin-top: 60px;">
         <section class="bg-dark">
             <div class="container">
-                <div class="text-center"><small>Client Data Storage | more information please contact catur.wicaksono.developer@gmail.com</small></div>
+                <div class="text-center">
+                    <small>Client Data Storage | more information please contact catur.wicaksono.developer@gmail.com</small>
+                </div>
             </div>
         </section>
     </footer>
     <script src="../../assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tilt.js/1.2.1/tilt.jquery.min.js"></script>
-    <script src="../../assets/js/script.min.js"></script>
+    <script src="../../../src/index.js"></script>
+    <script src="main.js"></script>
 </body>
 
 </html>
