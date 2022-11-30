@@ -19,4 +19,4 @@ Or you can add it using the non-minified version (Not Recomended)
 
 Complete documentation of using clientdatastorage can be seen on the documentation page. the link is below.
 
-[![ Go to Documentation ](https://caturdev.github.io/clientdatastorage/index.html)]
+[ [Go to Documentation](https://caturdev.github.io/clientdatastorage/index.html) ]
