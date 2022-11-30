@@ -191,7 +191,7 @@ const CDatabase = {
   where: (condition, notation, value) => {
 
     if (typeof condition === 'object') {
-      CLIENT_DATA_STORAGE_CONFIG.where = [...CLIENT_DATA_STORAGE_CONFIG.where, condition];
+      CLIENT_DATA_STORAGE_CONFIG.where = CLIENT_DATA_STORAGE_CONFIG.where.concat(condition);
       return;
     };
 

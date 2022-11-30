@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>clientdatastorage-design</title>
+    <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../assets/css/styles.min.css">
+</head>
+
+<body style="font-family: 'Fira Code', monospace;background: var(--bs-gray-dark);color: var(--bs-light);">
+    <header style="min-height: 56px;margin-bottom: 60px;">
+        <nav class="navbar navbar-dark navbar-expand-md fixed-top bg-dark">
+            <div class="container"><a class="navbar-brand" href="../../index.html"><strong><span style="color: rgb(249, 232, 20);">C</span>Storage</strong></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navcol-1">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="../../index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../../documentation.html">Documentation</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="../../example.html">Example</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main style="min-height: 100vh;">
+        <section style="margin-bottom: 30px;">
+            <div class="container">
+                <div class="card bg-dark">
+                    <div class="card-body text-center">
+                        <div style="margin-bottom: 40px;margin-top: 30px;">
+                            <h4>Animal Food</h4>
+                            <h6 class="text-muted mb-2">Choose The Match Animal With It Food Type</h6><button class="btn btn-outline-info" type="button">New Game</button>
+                        </div>
+                        <div class="row gy-3 justify-content-center align-items-center" id="animal-conatiner">
+                            <div class="col-lg-3"><button class="btn btn-primary active" type="button" style="width: 100%;">🐹 rat<br></button></div>
+                            <div class="col-lg-3"><button class="btn btn-primary" type="button" style="width: 100%;">🐯 tiger<br></button></div>
+                            <div class="col-lg-3"><button class="btn btn-primary" type="button" style="width: 100%;">🐮 cow</button></div>
+                            <div class="col-lg-3"><button class="btn btn-primary" type="button" style="width: 100%;">🐺 wolf<br></button></div>
+                            <div class="col-lg-3"><button class="btn btn-primary" type="button" style="width: 100%;">🐺 wolf<br></button></div>
+                            <div class="col-lg-3"><button class="btn btn-primary" type="button" style="width: 100%;">🐺 wolf<br></button></div>
+                        </div>
+                        <div style="margin-top: 40px;">
+                            <p>Choice The Food Type</p>
+                        </div>
+                        <div class="row gy-3 justify-content-center align-items-center" id="food-conatiner">
+                            <div class="col-lg-3"><button class="btn btn-primary" type="button" style="width: 100%;">Carnivore<br></button></div>
+                            <div class="col-lg-3"><button class="btn btn-primary" type="button" style="width: 100%;">Herbivore<br></button></div>
+                            <div class="col-lg-3"><button class="btn btn-primary" type="button" style="width: 100%;">Omnivore</button></div>
+                        </div>
+                        <div style="margin-top: 40px;margin-bottom: 30px;">
+                            <p>Result</p>
+                            <p class="text-success">CORRECT!!</p><button class="btn btn-info" type="button">Submit</button>
+                        </div>
+                        <div style="margin-top: 40px;margin-bottom: 30px;">
+                            <div class="table-responsive">
+                                <table class="table table-dark table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-start">Score</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-start">Correct Answer</td>
+                                            <td>1</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-start">In-Correct Answer<br></td>
+                                            <td>78</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer style="margin-top: 60px;">
+        <section class="bg-dark">
+            <div class="container">
+                <div class="text-center"><small>Client Data Storage | more information please contact catur.wicaksono.developer@gmail.com</small></div>
+            </div>
+        </section>
+    </footer>
+    <script src="../../assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tilt.js/1.2.1/tilt.jquery.min.js"></script>
+    <script src="../../assets/js/script.min.js"></script>
+</body>
+
+</html>

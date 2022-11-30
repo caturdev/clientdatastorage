@@ -5,15 +5,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>clientdatastorage-design</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Code&amp;display=swap">
-    <link rel="stylesheet" href="assets/css/index.css">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/styles.min.css">
 </head>
 
 <body style="font-family: 'Fira Code', monospace;background: var(--bs-gray-dark);color: var(--bs-light);">
     <header style="min-height: 56px;margin-bottom: 60px;">
         <nav class="navbar navbar-dark navbar-expand-md fixed-top bg-dark">
-            <div class="container"><a class="navbar-brand" href="index.html"><strong><span style="color: rgb(249, 232, 20);">C</span>Storage</strong></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="container"><a class="navbar-brand" href="index.html"><strong><span style="color: rgb(249, 232, 20);">C.D.S</span></strong></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navcol-1">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
@@ -24,7 +23,7 @@
             </div>
         </nav>
     </header>
-    <main style="margin-bottom: 60px;">
+    <main style="margin-bottom: 60px;min-height: 100vh;">
         <section style="margin-bottom: 16px;">
             <div class="container">
                 <div class="row gy-3">
@@ -38,41 +37,51 @@
         <section>
             <div class="container">
                 <div class="card bg-dark">
-                    <div class="card-body" style="padding: 40px;">
-                        <div style="margin-bottom: 60px;">
+                    <div class="card-body">
+                        <div style="margin-bottom: 36px;">
                             <h4><strong>Documentation</strong></h4>
                             <h6 class="text-muted mb-2">Easy steps to use Client Data Storage</h6>
                             <p>Using the Client Data Storage library, we can perform data management on the client side with a larger size than using regular storage, but also efficiently. This library uses Indexeddb to run the system. So we need to make sure that the device we are using supports Indexed DB. Because the storage system uses Indexed DB, the storage object is JSON (NoSQL Database).</p>
                         </div>
-                        <div style="margin-bottom: 60px;">
+                        <div style="margin-bottom: 36px;">
                             <h4 style="padding-bottom: 8px;border-bottom-style: dashed;border-bottom-color: var(--bs-gray-dark);"><strong>📦 Introduction</strong></h4>
                             <p>This library consists of two kinds of storage<br>1. Client Database<br>2. Client Storage<br><br>Both types have the same system, namely using IndexedDB as a storage medium, but these two types have different implementations. We will discuss after this one by one.</p>
                         </div>
-                        <div style="margin-bottom: 60px;">
+                        <div style="margin-bottom: 36px;">
                             <h4 style="padding-bottom: 8px;border-bottom-style: dashed;border-bottom-color: var(--bs-gray-dark);">🧰<strong>&nbsp;Installation</strong></h4>
-                            <p>To add client data storage to our project, we can use a CDN link bellow.<br><span style="color: rgb(152, 195, 121); background-color: rgb(35, 39, 46);">https://cdn.jsdelivr.net/gh/caturdev/clientdatastorage/src/index.js</span><br></p>
+                            <p>To add client data storage to our project, we can use a CDN link bellow.&nbsp;Use the recommended link, which is the link with the minified file.<br><span style="color: rgb(152, 195, 121); background-color: rgb(35, 39, 46);">https://cdn.jsdelivr.net/gh/caturdev/clientdatastorage@0.0.2/src/index.min.js</span><br>Or non-minified files <strong>(not recommended)</strong><br><span style="color: rgb(152, 195, 121); background-color: rgb(35, 39, 46);">https://cdn.jsdelivr.net/gh/caturdev/clientdatastorage@0.0.2/src/index.js</span><br></p>
                             <div class="card bg-dark border-secondary" style="border-width: 3px;margin-bottom: 16px;">
                                 <div class="card-body">
-                                    <p class="card-text text-x-scroll"><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">&lt;</span><span style="color: rgb(224, 108, 117); background-color: rgb(35, 39, 46);">script</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);"> </span><span style="color: rgb(209, 154, 102); background-color: rgb(35, 39, 46);">src</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">=</span><span style="color: rgb(152, 195, 121); background-color: rgb(35, 39, 46);">"https://cdn.jsdelivr.net/gh/caturdev/clientdatastorage/src/index.js"</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">&gt;&lt;/</span><span style="color: rgb(224, 108, 117); background-color: rgb(35, 39, 46);">script</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">&gt;</span><br></p>
+                                    <p class="card-text"><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">&lt;</span><span style="color: rgb(224, 108, 117); background-color: rgb(35, 39, 46);">script</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);"> </span><span style="color: rgb(209, 154, 102); background-color: rgb(35, 39, 46);">src</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">=</span><span style="color: rgb(152, 195, 121); background-color: rgb(35, 39, 46);">"https://cdn.jsdelivr.net/gh/caturdev/clientdatastorage@0.0.2/src/index.min.js"</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">&gt;&lt;/</span><span style="color: rgb(224, 108, 117); background-color: rgb(35, 39, 46);">script</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">&gt;</span><br></p>
+                                    <p class="card-text"><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">&lt;</span><span style="color: rgb(224, 108, 117); background-color: rgb(35, 39, 46);">script</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);"> </span><span style="color: rgb(209, 154, 102); background-color: rgb(35, 39, 46);">src</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">=</span><span style="color: rgb(152, 195, 121); background-color: rgb(35, 39, 46);">"https://cdn.jsdelivr.net/gh/caturdev/clientdatastorage@0.0.2/src/index.js"</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">&gt;&lt;/</span><span style="color: rgb(224, 108, 117); background-color: rgb(35, 39, 46);">script</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">&gt;</span><br></p>
                                 </div>
                             </div>
                             <p>or you can download and import the file src/index.js manually from the clientdatastorage repository, as in the following example<br></p>
                             <div class="card bg-dark border-secondary" style="border-width: 3px;margin-bottom: 16px;">
                                 <div class="card-body">
-                                    <p class="card-text text-x-scroll"><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">&lt;</span><span style="color: rgb(224, 108, 117); background-color: rgb(35, 39, 46);">script</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);"> </span><span style="color: rgb(209, 154, 102); background-color: rgb(35, 39, 46);">src</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">=</span><span style="color: rgb(152, 195, 121); background-color: rgb(35, 39, 46);">"goto_clientdatastorage_folder/src/index.js"</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">&gt;&lt;/</span><span style="color: rgb(224, 108, 117); background-color: rgb(35, 39, 46);">script</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">&gt;</span><br></p>
+                                    <p class="card-text"><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">&lt;</span><span style="color: rgb(224, 108, 117); background-color: rgb(35, 39, 46);">script</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);"> </span><span style="color: rgb(209, 154, 102); background-color: rgb(35, 39, 46);">src</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">=</span><span style="color: rgb(152, 195, 121); background-color: rgb(35, 39, 46);">"goto_clientdatastorage_folder/src/index.js"</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">&gt;&lt;/</span><span style="color: rgb(224, 108, 117); background-color: rgb(35, 39, 46);">script</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">&gt;</span><br></p>
                                 </div>
                             </div>
-                            <p>To check whether CDataStorage has been installed perfectly in our project, just check on our IndexedDB, whether there is ClientDB or not, the step is to open the dev tools in our browser, for Google Chrome, you can press ctrl + shift + i, then select menu Application.&nbsp;On the Application menu, we will get a figure like the following. If IndexedDB already has a ClientDB object, then CDataStorage can already be used in our project.<br></p><img class="rounded img-fluid" src="assets/img/cds-figure1.png" alt="Google Chrome dev tools" style="margin-bottom: 16px;">
+                            <p>To check whether ClientDataStorage has been installed perfectly in our project, just check on our IndexedDB, whether there is ClientDB or not, the step is to open the dev tools in our browser, for Google Chrome, you can press ctrl + shift + i, then select menu Application.&nbsp;On the Application menu, we will get a figure like the following. If IndexedDB already has a ClientDB object, then ClientDataStorage can already be used in our project.<br></p><img class="rounded img-fluid" src="assets/img/cds-figure-instalation-chrome.png" alt="Google Chrome dev tools" style="margin-bottom: 16px;">
+                            <p>For Mozilla Firefox, you can press ctrl + shift + i, then select menu Storage.&nbsp;On the Storage menu, we will get a figure like the following. If IndexedDB already has a ClientDB object, then ClientDataStorage can already be used in our project.<br></p><img class="rounded img-fluid" src="assets/img/cds-figure-instalation-firefox.png" alt="Mozilla Firefox dev tools" style="margin-bottom: 16px;">
+                            <p>Continue on to the next documentation to learn more about how to use it.<br></p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
     </main>
-    <footer></footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <footer style="margin-top: 60px;">
+        <section class="bg-dark">
+            <div class="container">
+                <div class="text-center"><small>Client Data Storage | more information please contact catur.wicaksono.developer@gmail.com</small></div>
+            </div>
+        </section>
+    </footer>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tilt.js/1.2.1/tilt.jquery.min.js"></script>
+    <script src="assets/js/script.min.js"></script>
 </body>
 
 </html>

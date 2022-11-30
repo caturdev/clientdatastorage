@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>clientdatastorage-design</title>
+    <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../assets/css/styles.min.css">
+</head>
+
+<body style="font-family: 'Fira Code', monospace;background: var(--bs-gray-dark);color: var(--bs-light);">
+    <header style="min-height: 56px;margin-bottom: 60px;">
+        <nav class="navbar navbar-dark navbar-expand-md fixed-top bg-dark">
+            <div class="container"><a class="navbar-brand" href="../../index.html"><strong><span style="color: rgb(249, 232, 20);">C.D.S</span></strong></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navcol-1">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="../../index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../../documentation.html">Documentation</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="../../example.html">Example</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main style="min-height: 100vh;">
+        <section style="margin-bottom: 30px;">
+            <div class="container">
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-11 col-sm-7 col-md-5 col-lg-4 col-xl-3">
+                        <div class="card bg-dark">
+                            <div class="card-body text-center">
+                                <div style="margin-bottom: 40px;margin-top: 30px;">
+                                    <h4>Registration</h4>
+                                    <h6 class="text-muted mb-2">User Form Registration</h6>
+                                </div>
+                                <form id="form"><label class="form-label text-start">Name<input class="form-control" type="text" placeholder="Name" name="name"></label><label class="form-label text-start">Email<input class="form-control" type="email" placeholder="Email" name="email"></label><label class="form-label text-start">Password<input class="form-control" type="password" placeholder="Password" name="password"></label>
+                                    <div style="margin-top: 16px;"><button class="btn btn-primary" id="submit-data" type="button" style="width: 100%;">Submit</button><button class="btn btn-danger" id="clear-data" type="button" style="width: 100%;margin-top: 6px;">Hapus Data</button><button class="btn btn-warning" id="update-data" type="button" style="width: 100%;margin-top: 6px;display: none;">Update</button></div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="container">
+                <div class="row justify-content-center align-items-center">
+                    <div class="col">
+                        <div class="table-responsive">
+                            <table class="table table-dark">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center" style="width: 0px;">Number</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Password</th>
+                                        <th class="text-end"></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="body-data">
+                                    <tr>
+                                        <td class="text-center" style="vertical-align: middle;"><span class="spinner-border spinner-border-sm" role="status"></span></td>
+                                        <td style="vertical-align: middle;"> <span class="spinner-border spinner-border-sm" role="status"></span></td>
+                                        <td style="vertical-align: middle;"><span class="spinner-border spinner-border-sm" role="status"></span></td>
+                                        <td style="vertical-align: middle;"><span class="spinner-border spinner-border-sm" role="status"></span></td>
+                                        <td class="text-end" style="vertical-align: middle;"><span class="spinner-border spinner-border-sm" role="status"></span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer style="margin-top: 60px;">
+        <section class="bg-dark">
+            <div class="container">
+                <div class="text-center"><small>Client Data Storage | more information please contact catur.wicaksono.developer@gmail.com</small></div>
+            </div>
+        </section>
+    </footer>
+    <script src="../../assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tilt.js/1.2.1/tilt.jquery.min.js"></script>
+    <script src="../../assets/js/script.min.js"></script>
+</body>
+
+</html>

@@ -5,15 +5,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>clientdatastorage-design</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Code&amp;display=swap">
-    <link rel="stylesheet" href="assets/css/index.css">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/styles.min.css">
 </head>
 
 <body style="font-family: 'Fira Code', monospace;background: var(--bs-gray-dark);color: var(--bs-light);">
     <header style="min-height: 56px;margin-bottom: 60px;">
         <nav class="navbar navbar-dark navbar-expand-md fixed-top bg-dark">
-            <div class="container"><a class="navbar-brand" href="index.html"><strong><span style="color: rgb(249, 232, 20);">C</span>Storage</strong></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="container"><a class="navbar-brand" href="index.html"><strong><span style="color: rgb(249, 232, 20);">C.D.S</span></strong><br></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navcol-1">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
@@ -24,7 +23,7 @@
             </div>
         </nav>
     </header>
-    <main style="margin-bottom: 60px;">
+    <main style="margin-bottom: 60px;min-height: 100vh;">
         <section style="margin-bottom: 16px;">
             <div class="container">
                 <div class="row gy-3">
@@ -38,12 +37,12 @@
         <section>
             <div class="container">
                 <div class="card bg-dark">
-                    <div class="card-body" style="padding: 40px;">
-                        <div style="margin-bottom: 60px;">
+                    <div class="card-body">
+                        <div style="margin-bottom: 36px;">
                             <h4 style="padding-bottom: 8px;border-bottom-style: dashed;border-bottom-color: var(--bs-gray-dark);"><strong>💾 Client Storage</strong></h4>
-                            <p>By default, data stored in storage will be stored in a special collection, this is different from the database. Storage is divided into two types, <strong>local storage</strong> and <strong>global storage</strong>.<br><br>1. Local Storage, is storage that is limited to only working on certain browser tabs, which means that data stored in local storage can only be accessed and at home on certain tabs and other tabs in the browser cannot access this data<br>2. Global Storage, is unrestricted storage, all tabs in the same browser environment can access data stored in global storage. it is similar to CDatabase.</p>
+                            <p>By default, data stored in storage will be stored in a special collection, this is different from the database. Storage is divided into two types, <strong>local storage</strong> and <strong>global storage</strong>.<br><strong><span style="color: rgb(0, 114, 198);">1. Local Storage</span></strong><br>is storage that is limited to only working on certain browser tabs, which means that data stored in local storage can only be accessed and at home on certain tabs and other tabs in the browser cannot access this data<br><strong><span style="color: rgb(0, 114, 198);">2. Global Storage</span></strong><br>is unrestricted storage, all tabs in the same browser environment can access data stored in global storage. it is similar to CDatabase.</p>
                         </div>
-                        <div style="margin-bottom: 60px;">
+                        <div style="margin-bottom: 36px;">
                             <h5 style="padding-bottom: 8px;border-bottom: 1px dashed var(--bs-gray-dark) ;"><strong>Data Transactions for Local Storage</strong></h5>
                             <h6><svg xmlns="http://www.w3.org/2000/svg" viewBox="-32 0 512 512" width="1em" height="1em" fill="currentColor">
                                     <!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
@@ -52,7 +51,7 @@
                             <p>To add data to the database object, we can use the add command, as shown in the example below.&nbsp;To check whether the data has been successfully added, we can check IndexedDB in our browser's dev tools</p>
                             <div class="card bg-dark border-secondary" style="border-width: 3px;margin-bottom: 16px;">
                                 <div class="card-body">
-                                    <p class="card-text text-x-scroll"><span style="color: rgb(229, 192, 123); background-color: rgb(35, 39, 46);">CDatabase</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">.</span><span style="color: rgb(97, 175, 239); background-color: rgb(35, 39, 46);">addLocal</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">(</span><span style="color: rgb(152, 195, 121); background-color: rgb(35, 39, 46);">'User'</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">, { </span><span style="color: rgb(224, 108, 117); background-color: rgb(35, 39, 46);">name</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">: </span><span style="color: rgb(152, 195, 121); background-color: rgb(35, 39, 46);">'Indra Jati'</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">, </span><span style="color: rgb(224, 108, 117); background-color: rgb(35, 39, 46);">email</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">: </span><span style="color: rgb(209, 154, 102); background-color: rgb(35, 39, 46);">null</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);"> });</span><br></p>
+                                    <p class="card-text"><span style="color: rgb(229, 192, 123); background-color: rgb(35, 39, 46);">CDatabase</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">.</span><span style="color: rgb(97, 175, 239); background-color: rgb(35, 39, 46);">addLocal</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">(</span><span style="color: rgb(152, 195, 121); background-color: rgb(35, 39, 46);">'User'</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">, { </span><span style="color: rgb(224, 108, 117); background-color: rgb(35, 39, 46);">name</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">: </span><span style="color: rgb(152, 195, 121); background-color: rgb(35, 39, 46);">'Indra Jati'</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">, </span><span style="color: rgb(224, 108, 117); background-color: rgb(35, 39, 46);">email</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">: </span><span style="color: rgb(209, 154, 102); background-color: rgb(35, 39, 46);">null</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);"> });</span><br></p>
                                 </div>
                             </div>
                             <h6><svg xmlns="http://www.w3.org/2000/svg" viewBox="-32 0 512 512" width="1em" height="1em" fill="currentColor">
@@ -62,7 +61,7 @@
                             <p>To add data to the database object, we can use the add command, as shown in the example below.&nbsp;To check whether the data has been successfully added, we can check IndexedDB in our browser's dev tools</p>
                             <div class="card bg-dark border-secondary" style="border-width: 3px;margin-bottom: 16px;">
                                 <div class="card-body">
-                                    <p class="card-text text-x-scroll"><span style="color: rgb(229, 192, 123); background-color: rgb(35, 39, 46);">CDatabase</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">.</span><span style="color: rgb(97, 175, 239); background-color: rgb(35, 39, 46);">putLocal</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">(</span><span style="color: rgb(152, 195, 121); background-color: rgb(35, 39, 46);">'User'</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">, 1, { </span><span style="color: rgb(224, 108, 117); background-color: rgb(35, 39, 46);">name</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">: </span><span style="color: rgb(152, 195, 121); background-color: rgb(35, 39, 46);">'Indra Jati'</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">, </span><span style="color: rgb(224, 108, 117); background-color: rgb(35, 39, 46);">email</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">: </span><span style="color: rgb(209, 154, 102); background-color: rgb(35, 39, 46);">null</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);"> });</span><br></p>
+                                    <p class="card-text"><span style="color: rgb(229, 192, 123); background-color: rgb(35, 39, 46);">CDatabase</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">.</span><span style="color: rgb(97, 175, 239); background-color: rgb(35, 39, 46);">putLocal</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">(</span><span style="color: rgb(152, 195, 121); background-color: rgb(35, 39, 46);">'User'</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">, 1, { </span><span style="color: rgb(224, 108, 117); background-color: rgb(35, 39, 46);">name</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">: </span><span style="color: rgb(152, 195, 121); background-color: rgb(35, 39, 46);">'Indra Jati'</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">, </span><span style="color: rgb(224, 108, 117); background-color: rgb(35, 39, 46);">email</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">: </span><span style="color: rgb(209, 154, 102); background-color: rgb(35, 39, 46);">null</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);"> });</span><br></p>
                                 </div>
                             </div>
                             <h6><svg xmlns="http://www.w3.org/2000/svg" viewBox="-32 0 512 512" width="1em" height="1em" fill="currentColor">
@@ -72,11 +71,11 @@
                             <p>To add data to the database object, we can use the add command, as shown in the example below.&nbsp;To check whether the data has been successfully added, we can check IndexedDB in our browser's dev tools</p>
                             <div class="card bg-dark border-secondary" style="border-width: 3px;margin-bottom: 16px;">
                                 <div class="card-body">
-                                    <p class="card-text text-x-scroll"><span style="color: rgb(229, 192, 123); background-color: rgb(35, 39, 46);">const collectionData = await CDatabase</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">.</span><span style="color: rgb(97, 175, 239); background-color: rgb(35, 39, 46);">getLocal</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">(</span><span style="color: rgb(152, 195, 121); background-color: rgb(35, 39, 46);">'User'</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">);</span><br></p>
+                                    <p class="card-text"><span style="color: rgb(198, 120, 221); background-color: rgb(35, 39, 46);">const</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);"> </span><span style="color: rgb(229, 192, 123); background-color: rgb(35, 39, 46);">collectionData</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);"> </span><span style="color: rgb(86, 182, 194); background-color: rgb(35, 39, 46);">=</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);"> </span><span style="color: rgb(198, 120, 221); background-color: rgb(35, 39, 46);">await</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);"> </span><span style="color: rgb(229, 192, 123); background-color: rgb(35, 39, 46);">CDatabase</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">.</span><span style="color: rgb(97, 175, 239); background-color: rgb(35, 39, 46);">getLocal</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">(</span><span style="color: rgb(152, 195, 121); background-color: rgb(35, 39, 46);">'User'</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">);</span><br></p>
                                 </div>
                             </div>
                         </div>
-                        <div style="margin-bottom: 60px;">
+                        <div style="margin-bottom: 36px;">
                             <h5 style="padding-bottom: 8px;border-bottom: 1px dashed var(--bs-gray-dark) ;"><strong>Data Transactions for Global Storage</strong></h5>
                             <h6><svg xmlns="http://www.w3.org/2000/svg" viewBox="-32 0 512 512" width="1em" height="1em" fill="currentColor">
                                     <!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
@@ -85,7 +84,7 @@
                             <p>To add data to the database object, we can use the add command, as shown in the example below.&nbsp;To check whether the data has been successfully added, we can check IndexedDB in our browser's dev tools</p>
                             <div class="card bg-dark border-secondary" style="border-width: 3px;margin-bottom: 16px;">
                                 <div class="card-body">
-                                    <p class="card-text text-x-scroll"><span style="color: rgb(229, 192, 123); background-color: rgb(35, 39, 46);">CStorage</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">.</span><span style="color: rgb(97, 175, 239); background-color: rgb(35, 39, 46);">addGlobal</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">(</span><span style="color: rgb(152, 195, 121); background-color: rgb(35, 39, 46);">'User'</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">, { </span><span style="color: rgb(224, 108, 117); background-color: rgb(35, 39, 46);">name</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">: </span><span style="color: rgb(152, 195, 121); background-color: rgb(35, 39, 46);">'Indra Jati'</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">, </span><span style="color: rgb(224, 108, 117); background-color: rgb(35, 39, 46);">email</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">: </span><span style="color: rgb(209, 154, 102); background-color: rgb(35, 39, 46);">null</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);"> });</span><br></p>
+                                    <p class="card-text"><span style="color: rgb(229, 192, 123); background-color: rgb(35, 39, 46);">CStorage</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">.</span><span style="color: rgb(97, 175, 239); background-color: rgb(35, 39, 46);">addGlobal</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">(</span><span style="color: rgb(152, 195, 121); background-color: rgb(35, 39, 46);">'User'</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">, { </span><span style="color: rgb(224, 108, 117); background-color: rgb(35, 39, 46);">name</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">: </span><span style="color: rgb(152, 195, 121); background-color: rgb(35, 39, 46);">'Indra Jati'</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">, </span><span style="color: rgb(224, 108, 117); background-color: rgb(35, 39, 46);">email</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">: </span><span style="color: rgb(209, 154, 102); background-color: rgb(35, 39, 46);">null</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);"> });</span><br></p>
                                 </div>
                             </div>
                             <h6><svg xmlns="http://www.w3.org/2000/svg" viewBox="-32 0 512 512" width="1em" height="1em" fill="currentColor">
@@ -95,7 +94,7 @@
                             <p>To add data to the database object, we can use the add command, as shown in the example below.&nbsp;To check whether the data has been successfully added, we can check IndexedDB in our browser's dev tools</p>
                             <div class="card bg-dark border-secondary" style="border-width: 3px;margin-bottom: 16px;">
                                 <div class="card-body">
-                                    <p class="card-text text-x-scroll"><span style="color: rgb(229, 192, 123); background-color: rgb(35, 39, 46);">CDatabase</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">.</span><span style="color: rgb(97, 175, 239); background-color: rgb(35, 39, 46);">putGlobal</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">(</span><span style="color: rgb(152, 195, 121); background-color: rgb(35, 39, 46);">'User'</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">, 1, { </span><span style="color: rgb(224, 108, 117); background-color: rgb(35, 39, 46);">name</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">: </span><span style="color: rgb(152, 195, 121); background-color: rgb(35, 39, 46);">'Indra Jati'</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">, </span><span style="color: rgb(224, 108, 117); background-color: rgb(35, 39, 46);">email</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">: </span><span style="color: rgb(209, 154, 102); background-color: rgb(35, 39, 46);">null</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);"> });</span><br></p>
+                                    <p class="card-text"><span style="color: rgb(229, 192, 123); background-color: rgb(35, 39, 46);">CDatabase</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">.</span><span style="color: rgb(97, 175, 239); background-color: rgb(35, 39, 46);">putGlobal</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">(</span><span style="color: rgb(152, 195, 121); background-color: rgb(35, 39, 46);">'User'</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">, 1, { </span><span style="color: rgb(224, 108, 117); background-color: rgb(35, 39, 46);">name</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">: </span><span style="color: rgb(152, 195, 121); background-color: rgb(35, 39, 46);">'Indra Jati'</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">, </span><span style="color: rgb(224, 108, 117); background-color: rgb(35, 39, 46);">email</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">: </span><span style="color: rgb(209, 154, 102); background-color: rgb(35, 39, 46);">null</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);"> });</span><br></p>
                                 </div>
                             </div>
                             <h6><svg xmlns="http://www.w3.org/2000/svg" viewBox="-32 0 512 512" width="1em" height="1em" fill="currentColor">
@@ -105,7 +104,7 @@
                             <p>To add data to the database object, we can use the add command, as shown in the example below.&nbsp;To check whether the data has been successfully added, we can check IndexedDB in our browser's dev tools</p>
                             <div class="card bg-dark border-secondary" style="border-width: 3px;margin-bottom: 16px;">
                                 <div class="card-body">
-                                    <p class="card-text text-x-scroll"><span style="color: rgb(229, 192, 123); background-color: rgb(35, 39, 46);">const collectionData = await CDatabase</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">.</span><span style="color: rgb(97, 175, 239); background-color: rgb(35, 39, 46);">getGlobal</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">(</span><span style="color: rgb(152, 195, 121); background-color: rgb(35, 39, 46);">'User'</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">);</span><br></p>
+                                    <p class="card-text"><span style="color: rgb(198, 120, 221); background-color: rgb(35, 39, 46);">const</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);"> </span><span style="color: rgb(229, 192, 123); background-color: rgb(35, 39, 46);">collectionData</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);"> </span><span style="color: rgb(86, 182, 194); background-color: rgb(35, 39, 46);">=</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);"> </span><span style="color: rgb(198, 120, 221); background-color: rgb(35, 39, 46);">await</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);"> </span><span style="color: rgb(229, 192, 123); background-color: rgb(35, 39, 46);">CDatabase</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">.</span><span style="color: rgb(97, 175, 239); background-color: rgb(35, 39, 46);">getGlobal</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">(</span><span style="color: rgb(152, 195, 121); background-color: rgb(35, 39, 46);">'User'</span><span style="color: rgb(171, 178, 191); background-color: rgb(35, 39, 46);">);</span><br></p>
                                 </div>
                             </div>
                         </div>
@@ -114,10 +113,17 @@
             </div>
         </section>
     </main>
-    <footer></footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <footer style="margin-top: 60px;">
+        <section class="bg-dark">
+            <div class="container">
+                <div class="text-center"><small>Client Data Storage | more information please contact catur.wicaksono.developer@gmail.com</small></div>
+            </div>
+        </section>
+    </footer>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tilt.js/1.2.1/tilt.jquery.min.js"></script>
+    <script src="assets/js/script.min.js"></script>
 </body>
 
 </html>
